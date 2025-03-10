@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Department List</h2>
+<a href="{% url 'add_department' %}" class="btn btn-primary mb-3">Add Department</a>
+<input type="text" id="searchBox" placeholder="Search Departments..." class="form-control mb-3">
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for department in departments %}
+        <tr>
+            <td>{{ department.dept_id }}</td>
+            <td>{{ department.dept_name }}</td>
+            <td>{{ department.description }}</td>
+            <td>
+                <a href="{% url 'update_department' department.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'delete_department' department.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
